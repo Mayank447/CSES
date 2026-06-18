@@ -15,19 +15,19 @@ int main() {
 
     std::vector<std::pair<int, int>> movie(n);
     for (int i=0; i<n; i++) std::cin >> movie[i].first >> movie[i].second;
-    sort(movie.begin(), movie.end(), comp);
+    std::sort(movie.begin(), movie.end(), comp);
 
     int num[n] = {0};
     num[n-1] = 1;
 
     for (int i = n-2; i > -1; i--){
-        auto it = lower_bound(movie.begin(), movie.end(), std::make_pair(movie[i].second, 0), comp);
+        auto it = std::lower_bound(movie.begin(), movie.end(), std::make_pair(movie[i].second, 0), comp);
 
         if (it == movie.end()){
             num[i] = 1;
         }
         else {
-            int index = distance(movie.begin(), it);
+            int index = std::distance(movie.begin(), it);
             num[i] = 1 + num[index]; 
         }
     
